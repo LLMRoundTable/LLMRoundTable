@@ -1,3 +1,18 @@
+// Class-based provider for direct instantiation
+export class CopilotProviderClass {
+  async sendPrompt(prompt: string): Promise<string> {
+    // Logic to interact with GitHub Copilot API (placeholder)
+    const response = await fetch('https://api.github.com/copilot', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt }),
+    });
+    const data = await response.json();
+    return data.content;
+  }
+}
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface CopilotResponse {

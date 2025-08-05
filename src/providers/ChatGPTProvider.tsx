@@ -19,13 +19,6 @@ export class ChatGPTProviderClass {
   }
 }
 
-// ...existing code...
-
-export const ChatGPTProvider = ({ children }: { children: ReactNode }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const sendMessage = async (prompt: string) => {
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-
 interface Message {
   role: 'user' | 'assistant';
   content: string;
@@ -42,7 +35,6 @@ export const ChatGPTProvider = ({ children }: { children: ReactNode }) => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const sendMessage = async (prompt: string) => {
-    // Call the ChatGPT API here
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -54,13 +46,11 @@ export const ChatGPTProvider = ({ children }: { children: ReactNode }) => {
         messages: [{ role: 'user', content: prompt }]
       })
     });
-
     const data = await response.json();
     const newMessage: Message = {
       role: 'assistant',
       content: data.choices[0].message.content
     };
-
     setMessages((prevMessages) => [
       ...prevMessages,
       { role: 'user', content: prompt },
