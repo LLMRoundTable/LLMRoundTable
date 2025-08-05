@@ -1,0 +1,30 @@
+[1mdiff --git a/.devcontainer/devcontainer.json b/.devcontainer/devcontainer.json[m
+[1mindex ce77012..44cceb4 100644[m
+[1m--- a/.devcontainer/devcontainer.json[m
+[1m+++ b/.devcontainer/devcontainer.json[m
+[36m@@ -5,10 +5,21 @@[m
+     "vscode": {[m
+       "extensions": [[m
+         "GitHub.copilot",[m
+[31m-        "dbaeumer.vscode-eslint",        [m
+[31m-        "GitHub.vscode-github-actions",   [m
+[31m-        "eamodio.gitlens",               [m
+[31m-        "christian-kohler.npm-intellisense" [m
+[32m+[m[32m        "dbaeumer.vscode-eslint",[m
+[32m+[m[32m        "GitHub.vscode-github-actions",[m
+[32m+[m[32m        "eamodio.gitlens",[m
+[32m+[m[32m        "christian-kohler.npm-intellisense",[m
+[32m+[m[32m        "esbenp.prettier-vscode",[m
+[32m+[m[32m        "christian-kohler.path-intellisense",[m
+[32m+[m[32m        "aaron-bond.better-comments",[m
+[32m+[m[32m        "usernamehw.errorlens",[m
+[32m+[m[32m        "mgmcdermott.vscode-language-babel",[m
+[32m+[m[32m        "Orta.vscode-jest",[m
+[32m+[m[32m        "naumovs.node-modules-intellisense",[m
+[32m+[m[32m        "yoavbls.pretty-ts-errors",[m
+[32m+[m[32m        "ms-playwright.playwright-test",[m
+[32m+[m[32m        "google.gemini-code-assist",[m
+[32m+[m[32m        "WallabyJs.console-ninja"[m
+       ][m
+     }[m
+   }[m
