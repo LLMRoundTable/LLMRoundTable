@@ -1,0 +1,25 @@
+name: Build & Test worflow for Pull Requests
+run-name: ${{ github.actor }} is running pull request checks
+
+on: [pull_request]
+jobs:
+  building:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22' # Specify your Node.js version
+
+    - name: Install dependencies
+      run: npm install # Or yarn install, depending on your package manager
+
+    - name: Build project
+      run: npm run build 
+
+    - name: Run tests
+      run: npm test # Or yarn test, or your specific test command

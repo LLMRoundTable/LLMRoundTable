@@ -1,10 +1,10 @@
 import React from 'react';
 
 const providers = [
-    { name: 'ChatGPT', value: 'chatgpt' },
-    { name: 'GitHub Copilot', value: 'copilot' },
-    { name: 'Gemini', value: 'gemini' },
-    { name: 'DeepSeek', value: 'deepseek' },
+  { name: 'ChatGPT', value: 'chatgpt', icon: '🤖' },
+  { name: 'GitHub Copilot', value: 'copilot', icon: '🧑‍💻' },
+  { name: 'Gemini', value: 'gemini', icon: '🔮' },
+  { name: 'DeepSeek', value: 'deepseek', icon: '🦙' },
 ];
 
 interface ProviderSelectorProps {
@@ -13,21 +13,20 @@ interface ProviderSelectorProps {
 }
 
 const ProviderSelector: React.FC<ProviderSelectorProps> = ({ selectedProvider, onProviderChange }) => {
-    return (
-        <div className="provider-selector">
-            <h3>Select LLM Provider</h3>
-            <select
-                value={selectedProvider}
-                onChange={(e) => onProviderChange(e.target.value)}
-            >
-                {providers.map((provider) => (
-                    <option key={provider.value} value={provider.value}>
-                        {provider.name}
-                    </option>
-                ))}
-            </select>
-        </div>
-    );
+  return (
+    <div className="provider-selector">
+      <select
+        value={selectedProvider}
+        onChange={(e) => onProviderChange(e.target.value)}
+      >
+        {providers.map((provider) => (
+          <option key={provider.value} value={provider.value}>
+            {provider.icon} {provider.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 };
 
 export default ProviderSelector;
