@@ -1,40 +1,63 @@
-# LLMRoundTable
+# LLM Chat Clone
 
-This project is a React + Vite app designed to mimic the ChatGPT or GitHub Copilot Chat UI and experience. It will support multiple LLM providers (ChatGPT, Gemini, DeepSeek, Llama, Claude).
+This project is a React Vite application designed to mimic the ChatGPT interface and allow users to interact with multiple LLM providers simultaneously, including ChatGPT, GitHub Copilot, Gemini, and DeepSeek.
 
 ## Features
 
-- Modern chat interface inspired by ChatGPT and Copilot Chat
-- Modular and extensible codebase
-- Ready for integration with multiple LLM APIs
-- Fast development with Vite
+- **Multiple LLM Providers**: Users can select from various LLM providers and send prompts to them simultaneously.
+- **Chat Interface**: A user-friendly chat interface that displays conversations with the selected LLMs.
+- **Responsive Design**: The application is designed to be responsive and visually similar to popular chat interfaces.
 
-## Getting Started
+## Project Structure
 
-### Development
-
-```bash
-npm run dev
+```
+llm-chat-clone
+├── src
+│   ├── main.tsx              # Entry point of the application
+│   ├── App.tsx               # Main application component
+│   ├── components             # Contains reusable components
+│   ├── providers              # Contains LLM provider classes
+│   ├── hooks                  # Custom hooks for managing state
+│   ├── types                  # TypeScript types and interfaces
+│   ├── styles                 # CSS styles for the application
+│   └── utils                  # Utility functions for API calls
+├── public
+│   └── index.html            # Main HTML file
+├── package.json               # NPM configuration file
+├── tsconfig.json             # TypeScript configuration file
+└── vite.config.ts            # Vite configuration file
 ```
 
-### Build
+## Installation
 
-```bash
-npm run build
-```
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   cd llm-chat-clone
+   ```
 
-### Preview
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-```bash
-npm run preview
-```
+3. Start the development server:
+   ```
+   npm run dev
+   ```
 
-## Next Steps
+4. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-- Implement chat UI components
-- Integrate LLM provider selection and API calls
-- Add authentication and session management if needed
+## Usage
 
----
+- Select the desired LLM providers from the sidebar.
+- Enter your prompts in the input field and send them to the selected providers.
+- View the responses in the chat window.
 
-For workspace-specific Copilot instructions, see `.github/copilot-instructions.md`.
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
