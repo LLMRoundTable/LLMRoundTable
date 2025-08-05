@@ -3,7 +3,11 @@ import MessageList from './MessageList';
 import MessageInput from './MessageInput';
 import { useChat } from '../hooks/useChat';
 
-const ChatWindow: React.FC = () => {
+interface ChatWindowProps {
+  selectedProviders: any[];
+}
+
+const ChatWindow: React.FC<ChatWindowProps> = ({ selectedProviders }) => {
     const { messages, sendMessage } = useChat();
 
     return (

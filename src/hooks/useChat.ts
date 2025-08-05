@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { ChatGPTProvider } from '../providers/ChatGPTProvider';
-import { CopilotProviderClass } from '../providers/CopilotProvider';
+import { ChatGPTProviderClass } from '../providers/ChatGPTProvider';
+import { CopilotProviderClass } from '../providers/CopilotProvider.tsx';
 import { GeminiProvider } from '../providers/GeminiProvider';
 import { DeepSeekProvider } from '../providers/DeepSeekProvider';
 import { Message } from '../types';
 
 const providers: { [key: string]: any } = {
-  ChatGPT: new ChatGPTProvider(),
-    Copilot: new CopilotProviderClass(),
+  ChatGPT: new ChatGPTProviderClass(),
+  Copilot: new CopilotProviderClass(),
   Gemini: new GeminiProvider('YOUR_API_KEY'),
   DeepSeek: new DeepSeekProvider('YOUR_API_KEY'),
 };
@@ -22,7 +22,13 @@ export const useChat = () => {
     const responses = await Promise.all(
       selectedProviders.map(async (providerName) => {
         const provider = providers[providerName];
-        return await provider.sendMessage(prompt);
+        if (provider.sendPrompt) {
+          return await provider.sendPrompt(prompt);
+        } else if (provider.sendMessage) {
+          return await provider.sendMessage(prompt);
+        } else {
+          throw new Error(`Provider ${providerName} does not support sending messages.`);
+        }
       })
     );
 

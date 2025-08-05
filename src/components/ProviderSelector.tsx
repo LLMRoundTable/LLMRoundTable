@@ -7,7 +7,12 @@ const providers = [
     { name: 'DeepSeek', value: 'deepseek' },
 ];
 
-const ProviderSelector = ({ selectedProvider, onProviderChange }) => {
+interface ProviderSelectorProps {
+  selectedProvider: string;
+  onProviderChange: (provider: string) => void;
+}
+
+const ProviderSelector: React.FC<ProviderSelectorProps> = ({ selectedProvider, onProviderChange }) => {
     return (
         <div className="provider-selector">
             <h3>Select LLM Provider</h3>

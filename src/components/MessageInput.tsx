@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 
-const MessageInput = ({ onSend }) => {
+interface MessageInputProps {
+  onSend: (message: string) => void;
+}
+
+const MessageInput: React.FC<MessageInputProps> = ({ onSend }) => {
     const [inputValue, setInputValue] = useState('');
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (inputValue.trim()) {
             onSend(inputValue);

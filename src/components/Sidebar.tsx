@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  onProviderChange: (providers: any[]) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onProviderChange }) => {
     return (
         <div className="sidebar">
             <h2>LLM Providers</h2>
@@ -10,7 +14,7 @@ const Sidebar: React.FC = () => {
                 <li>Gemini</li>
                 <li>DeepSeek</li>
             </ul>
-            <button>Switch Provider</button>
+            <button onClick={() => onProviderChange([])}>Switch Provider</button>
         </div>
     );
 };

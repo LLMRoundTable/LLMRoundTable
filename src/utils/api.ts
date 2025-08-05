@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URLS = {
+const API_BASE_URLS: Record<string, string> = {
     ChatGPT: 'https://api.openai.com/v1/chat/completions',
     Copilot: 'https://api.github.com/copilot',
     Gemini: 'https://api.gemini.com/v1/queries',
     DeepSeek: 'https://api.deepseek.com/v1/queries',
 };
 
-const fetchFromProvider = async (provider, prompt) => {
+const fetchFromProvider = async (provider: string, prompt: string): Promise<any> => {
     const url = API_BASE_URLS[provider];
     if (!url) {
         throw new Error(`Provider ${provider} is not supported.`);
