@@ -1,7 +1,14 @@
 import { describe, it, expect } from 'vitest';
+import { build } from 'vite';
 
-describe('App', () => {
-  it('renders without crashing', () => {
-    expect(true).toBe(true);
+describe('Vite Build', () => {
+  it('should build the project without errors', async () => {
+    let error = null;
+    try {
+      await build();
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toBeNull();
   });
 });
