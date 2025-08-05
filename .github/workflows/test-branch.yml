@@ -5,7 +5,7 @@ on:
     branches:
       - 'feature/*' # Trigger on pushes to branches starting with 'feature/'
       - 'bugfix/*'  # Trigger on pushes to branches starting with 'bugfix/'
-      
+
   pull_request:
     branches:
       - 'main' # Trigger on pull requests targeting the 'main' branch
@@ -25,6 +25,9 @@ jobs:
 
     - name: Install dependencies
       run: npm install # Or yarn install, depending on your package manager
+
+    - name: Build project
+      run: npm run build 
 
     - name: Run tests
       run: npm test # Or yarn test, or your specific test command
