@@ -1,5 +1,31 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+// Class-based provider for direct instantiation
+export class ChatGPTProviderClass {
+  async sendMessage(prompt: string): Promise<string> {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer YOUR_API_KEY`
+      },
+      body: JSON.stringify({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await response.json();
+    return data.choices[0].message.content;
+  }
+}
+
+// ...existing code...
+
+export const ChatGPTProvider = ({ children }: { children: ReactNode }) => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const sendMessage = async (prompt: string) => {
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
 interface Message {
   role: 'user' | 'assistant';
   content: string;

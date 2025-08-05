@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import { ChatGPTProvider } from '../providers/ChatGPTProvider';
+import { ChatGPTProviderClass } from '../providers/ChatGPTProvider';
 import { CopilotProvider } from '../providers/CopilotProvider';
 import { GeminiProvider } from '../providers/GeminiProvider';
 import { DeepSeekProvider } from '../providers/DeepSeekProvider';
 import { Message } from '../types';
 
-const providers = {
-  ChatGPT: new ChatGPTProvider(),
+const providers: { [key: string]: any } = {
+  ChatGPT: new ChatGPTProviderClass(),
   Copilot: new CopilotProvider(),
-  Gemini: new GeminiProvider(),
-  DeepSeek: new DeepSeekProvider(),
+  Gemini: new GeminiProvider('YOUR_API_KEY'),
+  DeepSeek: new DeepSeekProvider('YOUR_API_KEY'),
 };
 
 export const useChat = () => {
@@ -26,10 +26,11 @@ export const useChat = () => {
       })
     );
 
-    const newMessages = responses.map((response, index) => ({
-      text: response,
-      provider: selectedProviders[index],
-      timestamp: new Date().toISOString(),
+    const newMessages: Message[] = responses.map((response, index) => ({
+      id: `${selectedProviders[index]}-${Date.now()}`,
+      content: response,
+      sender: "llm",
+      timestamp: new Date(),
     }));
 
     setMessages((prevMessages) => [...prevMessages, ...newMessages]);

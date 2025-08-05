@@ -1,10 +1,10 @@
-import { LLMProvider } from './LLMProvider'; // Assuming a base class for LLM providers
+import { LLMProvider } from './LLMProvider';
 
-class GeminiProvider extends LLMProvider {
+export class GeminiProvider extends LLMProvider {
     constructor(apiKey) {
         super();
         this.apiKey = apiKey;
-        this.baseUrl = 'https://api.gemini.com/v1'; // Replace with the actual Gemini API URL
+        this.baseUrl = 'https://api.gemini.com/v1';
     }
 
     async sendPrompt(prompt) {
@@ -22,8 +22,6 @@ class GeminiProvider extends LLMProvider {
         }
 
         const data = await response.json();
-        return data.response; // Adjust based on the actual response structure
+        return data.response;
     }
 }
-
-export default GeminiProvider;

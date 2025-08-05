@@ -1,1 +1,1 @@
-// This file has been migrated to CopilotProvider.tsx
+export { CopilotProvider } from './CopilotProvider';

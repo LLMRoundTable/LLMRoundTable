@@ -1,10 +1,10 @@
-import { LLMProvider } from './LLMProvider'; // Assuming there's a base class for LLM providers
+import { LLMProvider } from './LLMProvider';
 
-class DeepSeekProvider extends LLMProvider {
+export class DeepSeekProvider extends LLMProvider {
     constructor(apiKey) {
         super();
         this.apiKey = apiKey;
-        this.baseUrl = 'https://api.deepseek.com/v1'; // Example base URL
+        this.baseUrl = 'https://api.deepseek.com/v1';
     }
 
     async sendPrompt(prompt) {
@@ -22,8 +22,6 @@ class DeepSeekProvider extends LLMProvider {
         }
 
         const data = await response.json();
-        return data.response; // Adjust according to the actual response structure
+        return data.response;
     }
 }
-
-export default DeepSeekProvider;
