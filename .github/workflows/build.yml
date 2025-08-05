@@ -1,18 +1,7 @@
 name: Build Workflow
+run-name: ${{ github.actor }} is building the project 🚀
 
-on:
-  push:
-    branches:
-      - 'feature/*' # Trigger on pushes to branches starting with 'feature/'
-      - 'bugfix/*'  # Trigger on pushes to branches starting with 'bugfix/'
-      - 'hotfix/*'  # Trigger on pushes to branches starting with 'hotfix/'
-      - 'dev'  # Trigger on pushes to branches starting with 'dev'
-      - 'main'  # Trigger on pushes to branches starting with 'main'
-
-  pull_request:
-    branches:
-      - 'main' # Trigger on pull requests targeting the 'main' branch
-
+on: [push]
 jobs:
   building:
     runs-on: ubuntu-latest

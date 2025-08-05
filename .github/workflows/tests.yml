@@ -1,17 +1,6 @@
 name: Test Workflow
-
-on:
-  push:
-    branches:
-      - 'feature/*' # Trigger on pushes to branches starting with 'feature/'
-      - 'bugfix/*'  # Trigger on pushes to branches starting with 'bugfix/'
-      - 'hotfix/*'  # Trigger on pushes to branches starting with 'hotfix/'
-      - 'dev'  # Trigger on pushes to branches starting with 'dev'
-      - 'main'  # Trigger on pushes to branches starting with 'main'
-
-  pull_request:
-    branches:
-      - 'main' # Trigger on pull requests targeting the 'main' branch
+run-name: ${{ github.actor }} is running tests 🚦
+on: [push]
 
 jobs:
   testing:
