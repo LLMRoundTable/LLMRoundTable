@@ -1,4 +1,4 @@
-name: Build Workflow
+name: Build & Test worflow for Pull Requests
 run-name: ${{ github.actor }} is running pull request checks
 
 on: [pull_request]

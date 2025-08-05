@@ -1,4 +1,4 @@
-name: Build Workflow
+name: Build & Test Workflow
 run-name: ${{ github.actor }} is building the project 🚀 & running tests 🚦
 
 on: [push]
