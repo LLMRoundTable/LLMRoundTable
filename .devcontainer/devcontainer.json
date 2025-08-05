@@ -5,10 +5,21 @@
     "vscode": {
       "extensions": [
         "GitHub.copilot",
-        "dbaeumer.vscode-eslint",        
-        "GitHub.vscode-github-actions",   
-        "eamodio.gitlens",               
-        "christian-kohler.npm-intellisense" 
+        "dbaeumer.vscode-eslint",
+        "GitHub.vscode-github-actions",
+        "eamodio.gitlens",
+        "christian-kohler.npm-intellisense",
+        "esbenp.prettier-vscode",
+        "christian-kohler.path-intellisense",
+        "aaron-bond.better-comments",
+        "usernamehw.errorlens",
+        "mgmcdermott.vscode-language-babel",
+        "Orta.vscode-jest",
+        "naumovs.node-modules-intellisense",
+        "yoavbls.pretty-ts-errors",
+        "ms-playwright.playwright-test",
+        "google.gemini-code-assist",
+        "WallabyJs.console-ninja"
       ]
     }
   }
