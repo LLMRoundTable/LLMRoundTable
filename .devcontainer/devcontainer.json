@@ -4,8 +4,12 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "dbaeumer.vscode-eslint",        
+        "GitHub.vscode-github-actions",   
+        "eamodio.gitlens",               
+        "christian-kohler.npm-intellisense" 
       ]
     }
   }
-}
+}    
