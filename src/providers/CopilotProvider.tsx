@@ -1,3 +1,5 @@
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
 // Class-based provider for direct instantiation
 export class CopilotProviderClass {
   async sendPrompt(prompt: string): Promise<string> {
@@ -13,10 +15,8 @@ export class CopilotProviderClass {
     return data.content;
   }
 }
-import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface CopilotResponse {
-  // Define the structure of Copilot response here
   content: string;
 }
 

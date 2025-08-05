@@ -1,72 +1,40 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-// Class-based provider for direct instantiation
-export class ChatGPTProviderClass {
-  async sendMessage(prompt: string): Promise<string> {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer YOUR_API_KEY`
-      },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await response.json();
-    return data.choices[0].message.content;
-  }
-}
+const ChatGPTContext = createContext();
 
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
+export const ChatGPTProvider = ({ children }) => {
+    const [messages, setMessages] = useState([]);
 
-interface ChatGPTContextType {
-  messages: Message[];
-  sendMessage: (prompt: string) => Promise<void>;
-}
+    const sendMessage = async (prompt) => {
+        // Call the ChatGPT API here
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer YOUR_API_KEY`
+            },
+            body: JSON.stringify({
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'user', content: prompt }]
+            })
+        });
 
-const ChatGPTContext = createContext<ChatGPTContextType | undefined>(undefined);
+        const data = await response.json();
+        const newMessage = {
+            role: 'assistant',
+            content: data.choices[0].message.content
+        };
 
-export const ChatGPTProvider = ({ children }: { children: ReactNode }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
-
-  const sendMessage = async (prompt: string) => {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer YOUR_API_KEY`
-      },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await response.json();
-    const newMessage: Message = {
-      role: 'assistant',
-      content: data.choices[0].message.content
+        setMessages((prevMessages) => [...prevMessages, { role: 'user', content: prompt }, newMessage]);
     };
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { role: 'user', content: prompt },
-      newMessage
-    ]);
-  };
 
-  return (
-    <ChatGPTContext.Provider value={{ messages, sendMessage }}>
-      {children}
-    </ChatGPTContext.Provider>
-  );
+    return (
+        <ChatGPTContext.Provider value={{ messages, sendMessage }}>
+            {children}
+        </ChatGPTContext.Provider>
+    );
 };
 
 export const useChatGPT = () => {
-  const context = useContext(ChatGPTContext);
-  if (!context) throw new Error('useChatGPT must be used within a ChatGPTProvider');
-  return context;
+    return useContext(ChatGPTContext);
 };

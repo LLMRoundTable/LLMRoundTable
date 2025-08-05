@@ -1,1 +1,0 @@
-// Remove re-export. Import ChatGPTProviderClass directly from ChatGPTProvider.tsx where needed.

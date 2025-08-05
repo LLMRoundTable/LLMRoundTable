@@ -1,1 +1,0 @@
-// Remove re-export. Import CopilotProvider directly from CopilotProvider.tsx where needed.
