@@ -1,29 +1,30 @@
-import { LLMProvider } from './LLMProvider'; // Assuming there's a base class for LLM providers
+import { LLMProvider } from './LLMProvider';
 
-class DeepSeekProvider extends LLMProvider {
-    constructor(apiKey) {
-        super();
-        this.apiKey = apiKey;
-        this.baseUrl = 'https://api.deepseek.com/v1'; // Example base URL
+export class DeepSeekProvider extends LLMProvider {
+  private apiKey: string;
+  private baseUrl: string;
+
+  constructor(apiKey: string) {
+    super();
+    this.apiKey = apiKey;
+    this.baseUrl = 'https://api.deepseek.com/v1';
+  }
+
+  async sendPrompt(prompt: string): Promise<string> {
+    const response = await fetch(`${this.baseUrl}/generate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.apiKey}`
+      },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch response from DeepSeek');
     }
 
-    async sendPrompt(prompt) {
-        const response = await fetch(`${this.baseUrl}/generate`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.apiKey}`
-            },
-            body: JSON.stringify({ prompt })
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch response from DeepSeek');
-        }
-
-        const data = await response.json();
-        return data.response; // Adjust according to the actual response structure
-    }
+    const data = await response.json();
+    return data.response;
+  }
 }
-
-export default DeepSeekProvider;

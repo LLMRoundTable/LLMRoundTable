@@ -1,29 +1,30 @@
-import { LLMProvider } from './LLMProvider'; // Assuming a base class for LLM providers
+import { LLMProvider } from './LLMProvider';
 
-class GeminiProvider extends LLMProvider {
-    constructor(apiKey) {
-        super();
-        this.apiKey = apiKey;
-        this.baseUrl = 'https://api.gemini.com/v1'; // Replace with the actual Gemini API URL
+export class GeminiProvider extends LLMProvider {
+  private apiKey: string;
+  private baseUrl: string;
+
+  constructor(apiKey: string) {
+    super();
+    this.apiKey = apiKey;
+    this.baseUrl = 'https://api.gemini.com/v1';
+  }
+
+  async sendPrompt(prompt: string): Promise<string> {
+    const response = await fetch(`${this.baseUrl}/generate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.apiKey}`,
+      },
+      body: JSON.stringify({ prompt }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch response from Gemini API');
     }
 
-    async sendPrompt(prompt) {
-        const response = await fetch(`${this.baseUrl}/generate`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.apiKey}`,
-            },
-            body: JSON.stringify({ prompt }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch response from Gemini API');
-        }
-
-        const data = await response.json();
-        return data.response; // Adjust based on the actual response structure
-    }
+    const data = await response.json();
+    return data.response;
+  }
 }
-
-export default GeminiProvider;
