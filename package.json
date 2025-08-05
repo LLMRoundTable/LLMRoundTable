@@ -2,6 +2,7 @@
   "name": "multi-llm-chatgpt-clone",
   "version": "1.0.0",
   "description": "A React Vite app that mimics ChatGPT and allows users to prompt multiple LLMs (ChatGPT, Copilot, Gemini, DeepSeek) together.",
+  "type": "module",
   "main": "src/main.tsx",
   "scripts": {
     "dev": "vite",
