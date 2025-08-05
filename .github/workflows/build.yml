@@ -6,6 +6,8 @@ on:
       - 'feature/*' # Trigger on pushes to branches starting with 'feature/'
       - 'bugfix/*'  # Trigger on pushes to branches starting with 'bugfix/'
       - 'hotfix/*'  # Trigger on pushes to branches starting with 'hotfix/'
+      - 'dev'  # Trigger on pushes to branches starting with 'dev'
+      - 'main'  # Trigger on pushes to branches starting with 'main'
 
   pull_request:
     branches:
