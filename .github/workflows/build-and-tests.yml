@@ -1,9 +1,9 @@
-name: Test Workflow
-run-name: ${{ github.actor }} is running tests 🚦
-on: [push]
+name: Build Workflow
+run-name: ${{ github.actor }} is building the project 🚀 & running tests 🚦
 
+on: [push]
 jobs:
-  testing:
+  building:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,6 +17,9 @@ jobs:
 
     - name: Install dependencies
       run: npm install # Or yarn install, depending on your package manager
+
+    - name: Build project
+      run: npm run build 
 
     - name: Run tests
       run: npm test # Or yarn test, or your specific test command

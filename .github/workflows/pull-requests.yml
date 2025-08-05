@@ -1,7 +1,7 @@
 name: Build Workflow
-run-name: ${{ github.actor }} is building the project 🚀
+run-name: ${{ github.actor }} is running pull request checks
 
-on: [push]
+on: [pull_request]
 jobs:
   building:
     runs-on: ubuntu-latest
@@ -20,3 +20,6 @@ jobs:
 
     - name: Build project
       run: npm run build 
+
+    - name: Run tests
+      run: npm test # Or yarn test, or your specific test command
