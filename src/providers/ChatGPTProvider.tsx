@@ -7,7 +7,7 @@ export class ChatGPTProviderClass {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer YOUR_API_KEY`
+        'Authorization': `Bearer ${import.meta.env.VITE_API_KEY_HIDDEN_OPENAI}`
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
@@ -39,7 +39,7 @@ export const ChatGPTProvider = ({ children }: { children: ReactNode }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer YOUR_API_KEY`
+        'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',

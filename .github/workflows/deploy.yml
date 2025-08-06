@@ -28,6 +28,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    env:
+      # Set OpenAI API Key from secrets
+      VITE_API_KEY_HIDDEN_OPENAI: ${{ secrets.API_KEY_HIDDEN_OPENAI }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
