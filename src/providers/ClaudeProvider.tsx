@@ -1,3 +1,8 @@
+declare global {
+  interface Window {
+    puter: any;
+  }
+}
 export class ClaudeProviderClass {
   async sendMessage(prompt: string): Promise<string> {
     if (!window.puter) {
