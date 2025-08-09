@@ -3,9 +3,9 @@ import styles from '../styles/ProviderSelector.module.css';
 
 const providers = [
   { name: 'ChatGPT', value: 'chatgpt', icon: '🤖' },
-  { name: 'GitHub Copilot', value: 'copilot', icon: '🧑‍💻' },
+  { name: 'Llama', value: 'llama', icon: '‍‍🦙' },
   { name: 'Gemini', value: 'gemini', icon: '🔮' },
-  { name: 'DeepSeek', value: 'deepseek', icon: '🦙' },
+  { name: 'DeepSeek', value: 'deepseek', icon: '🐋' },
   { name: 'Claude', value: 'claude', icon: '🦾' },
 ];
 

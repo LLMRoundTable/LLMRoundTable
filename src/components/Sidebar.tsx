@@ -7,9 +7,10 @@ interface SidebarProps {
 
 const providers = [
   { name: 'ChatGPT', icon: '🤖' },
-  { name: 'GitHub Copilot', icon: '🧑‍💻' },
+  { name: 'Llama', icon: '‍‍🦙' },
   { name: 'Gemini', icon: '🔮' },
-  { name: 'DeepSeek', icon: '🦙' },
+  { name: 'DeepSeek', icon: '🐋' },
+  { name: 'Claude', icon: '🦾' },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ onProviderChange }) => {
