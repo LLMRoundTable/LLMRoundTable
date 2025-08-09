@@ -18,6 +18,17 @@ export const useChat = (selectedProviders: string[] = []) => {
 
   const sendMessage = async (prompt: string) => {
     setLoading(true);
+    // Add user's message first
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        id: `user-${Date.now()}`,
+        content: prompt,
+        sender: 'user',
+        timestamp: new Date(),
+      },
+    ]);
+
     const responses = await Promise.all(
       selectedProviders.map(async (providerName) => {
         const provider = providers[providerName];
