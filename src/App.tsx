@@ -17,8 +17,10 @@ const App = () => {
           <h1 className="app-title">LLMRoundTable</h1>
           <ProviderSelector selectedProvider={selectedProvider} onProviderChange={setSelectedProvider} />
         </header>
-  <ChatWindow messages={messages} loading={loading} />
-  <MessageInput onSend={sendMessage} />
+        <div style={{ maxWidth: 700, width: '100%', margin: '0 auto' }}>
+          <ChatWindow messages={messages} loading={loading} />
+          <MessageInput onSend={sendMessage} />
+        </div>
       </div>
     </div>
   );
