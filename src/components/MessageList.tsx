@@ -3,6 +3,7 @@ import { Message } from '../types';
 
 interface MessageListProps {
   messages: Message[];
+  loading?: boolean;
 }
 
 const getAvatar = (sender: string) => {
@@ -10,7 +11,7 @@ const getAvatar = (sender: string) => {
   return <div className="avatar">🤖</div>;
 };
 
-const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+const MessageList: React.FC<MessageListProps> = ({ messages, loading }) => {
   return (
     <div className="message-list">
       {messages.map((message, index) => (
@@ -24,6 +25,14 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
           </div>
         </div>
       ))}
+      {loading && (
+        <div className="message ai">
+          {getAvatar('llm')}
+          <div className="bubble">
+            <div className="message-content">Thinking...</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

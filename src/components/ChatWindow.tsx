@@ -8,11 +8,11 @@ interface ChatWindowProps {
 }
 
 const ChatWindow: React.FC<ChatWindowProps> = ({ selectedProviders }) => {
-  const { messages, sendMessage } = useChat(selectedProviders);
+  const { messages, sendMessage, loading } = useChat(selectedProviders);
 
   return (
     <div className="chat-window">
-      <MessageList messages={messages} />
+      <MessageList messages={messages} loading={loading} />
       <MessageInput onSend={sendMessage} />
     </div>
   );
