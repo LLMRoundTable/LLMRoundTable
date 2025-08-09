@@ -1,36 +1,27 @@
 import React from 'react';
+import styles from '../styles/MessageList.module.css';
 import { Message } from '../types';
 
 interface MessageListProps {
   messages: Message[];
   loading?: boolean;
+  className?: string;
 }
 
-const getAvatar = (sender: string) => {
-  if (sender === 'user') return <div className="avatar">🧑</div>;
-  return <div className="avatar">🤖</div>;
-};
-
-const MessageList: React.FC<MessageListProps> = ({ messages, loading }) => {
+const MessageList: React.FC<MessageListProps> = ({ messages, loading, className }) => {
   return (
-    <div className="message-list">
+    <div className={className || styles['message-list']}>
       {messages.map((message, index) => (
-        <div key={index} className={`message ${message.sender}`}>
-          {getAvatar(message.sender)}
-          <div className="bubble">
-            <div className="message-content">{message.content}</div>
-            {message.timestamp && (
-              <div className="timestamp">{new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
-            )}
-          </div>
+        <div key={index} className={`${styles.message} ${message.sender === 'user' ? styles.user : styles.ai}`}>
+          <div className={styles.avatar}>{message.sender === 'user' ? '🧑' : '🤖'}</div>
+          <div className={styles.bubble}>{message.content}</div>
+          <span className={styles.timestamp}>{message.timestamp?.toLocaleTimeString?.() || ''}</span>
         </div>
       ))}
       {loading && (
-        <div className="message ai">
-          {getAvatar('llm')}
-          <div className="bubble">
-            <div className="message-content">Thinking...</div>
-          </div>
+        <div className={styles.message}>
+          <div className={styles.avatar}>🤖</div>
+          <div className={styles.bubble}>Loading...</div>
         </div>
       )}
     </div>

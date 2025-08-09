@@ -1,0 +1,10 @@
+.provider-selector {
+  margin-left: 24px;
+}
+.provider-selector select {
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f7f7fa;
+}

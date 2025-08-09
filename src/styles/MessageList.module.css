@@ -1,0 +1,57 @@
+.message {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 80%;
+  animation: fadeIn 0.4s;
+}
+
+.message.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+.message.ai {
+  align-self: flex-start;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.bubble {
+  background: #f7f7fa;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  color: #222;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  position: relative;
+}
+.message.user .bubble {
+  background: #d1e7ff;
+  color: #1a3a6b;
+}
+.message.ai .bubble {
+  background: #fff;
+  color: #222;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

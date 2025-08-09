@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/Sidebar.module.css';
 
 interface SidebarProps {
   onProviderChange: (providers: any[]) => void;
@@ -13,7 +14,7 @@ const providers = [
 
 const Sidebar: React.FC<SidebarProps> = ({ onProviderChange }) => {
   return (
-    <div className="sidebar">
+    <div className={styles.sidebar}>
       <h2 style={{ marginBottom: '24px', fontWeight: 700 }}>Chats</h2>
       <div style={{ marginBottom: '32px' }}>
         <div style={{ color: '#aaa', fontSize: '0.95rem', marginBottom: '8px' }}>Recent</div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import MessageList from './MessageList';
+import styles from '../styles/ChatWindow.module.css';
 
 interface ChatWindowProps {
   messages: any[];
@@ -8,8 +9,8 @@ interface ChatWindowProps {
 
 const ChatWindow: React.FC<ChatWindowProps> = ({ messages, loading }) => {
   return (
-    <div className="chat-window">
-      <MessageList messages={messages} loading={loading} />
+    <div className={styles['chat-window']}>
+      <MessageList messages={messages} loading={loading} className={styles['message-list']} />
     </div>
   );
 };

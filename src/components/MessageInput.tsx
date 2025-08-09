@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '../styles/MessageInput.module.css';
 
 interface MessageInputProps {
   onSend: (message: string) => void;
@@ -30,17 +31,17 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="message-input">
+    <form onSubmit={handleSubmit} className={styles['message-input']}>
       <textarea
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         placeholder="Type your message..."
-        className="input-field"
+        className={styles['input-field']}
         rows={1}
         style={{ resize: 'none' }}
       />
-      <button type="submit" className="send-button">Send</button>
+      <button type="submit" className={styles['send-button']}>Send</button>
     </form>
   );
 };

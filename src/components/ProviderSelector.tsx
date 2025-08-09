@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/ProviderSelector.module.css';
 
 const providers = [
   { name: 'ChatGPT', value: 'chatgpt', icon: '🤖' },
@@ -15,7 +16,7 @@ interface ProviderSelectorProps {
 
 const ProviderSelector: React.FC<ProviderSelectorProps> = ({ selectedProvider, onProviderChange }) => {
   return (
-    <div className="provider-selector">
+    <div className={styles['provider-selector']}>
       <select
         value={selectedProvider}
         onChange={(e) => onProviderChange(e.target.value)}
