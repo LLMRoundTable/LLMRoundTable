@@ -14,11 +14,12 @@ const App = () => {
       <Sidebar onProviderChange={() => {}} />
       <div className="main-area">
         <header className="chat-header">
-          <h1 className="app-title">LLMRoundTable</h1>
           <ProviderSelector selectedProvider={selectedProvider} onProviderChange={setSelectedProvider} />
         </header>
-        <div style={{ maxWidth: 700, width: '100%', margin: '0 auto' }}>
+        <div style={{ maxWidth: '1200px', width: '100%', margin: '0 auto'}}>
           <ChatWindow messages={messages} loading={loading} />
+        </div>
+        <div style={{ maxWidth: '1200px', width: '100%', margin: '0 auto'}}>
           <MessageInput onSend={sendMessage} />
         </div>
       </div>

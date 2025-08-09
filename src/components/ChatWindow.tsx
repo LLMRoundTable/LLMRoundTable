@@ -9,7 +9,7 @@ interface ChatWindowProps {
 
 const ChatWindow: React.FC<ChatWindowProps> = ({ messages, loading }) => {
   return (
-    <div className={styles['chat-window']}>
+    <div className={styles['chat-window']} style = {{background: '#ffffffff', maxWidth: '1500px'}}> 
       <MessageList messages={messages} loading={loading} className={styles['message-list']} />
     </div>
   );
