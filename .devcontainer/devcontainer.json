@@ -1,6 +1,19 @@
 {
   "name": "My Codespace",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "vscode",
+			"userUid": "1000",
+			"userGid": "1000",
+            "upgradePackages": "true"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": "false"
+        }
+    },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -18,7 +31,8 @@
         "naumovs.node-modules-intellisense",
         "yoavbls.pretty-ts-errors",
         "ms-playwright.playwright-test",
-        "google.gemini-code-assist"
+        "google.gemini-code-assist",
+        // "WallabyJs.console-ninja"
       ]
     }
   }
