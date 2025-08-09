@@ -1,19 +1,15 @@
 import React from 'react';
 import MessageList from './MessageList';
-import MessageInput from './MessageInput';
-import { useChat } from '../hooks/useChat';
 
 interface ChatWindowProps {
-  selectedProviders: string[];
+  messages: any[];
+  loading: boolean;
 }
 
-const ChatWindow: React.FC<ChatWindowProps> = ({ selectedProviders }) => {
-  const { messages, sendMessage } = useChat(selectedProviders);
-
+const ChatWindow: React.FC<ChatWindowProps> = ({ messages, loading }) => {
   return (
     <div className="chat-window">
-      <MessageList messages={messages} />
-      <MessageInput onSend={sendMessage} />
+      <MessageList messages={messages} loading={loading} />
     </div>
   );
 };

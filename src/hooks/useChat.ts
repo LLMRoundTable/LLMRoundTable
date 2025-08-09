@@ -3,6 +3,7 @@ import { ChatGPTProviderClass } from '../providers/ChatGPTProvider';
 import { CopilotProviderClass } from '../providers/CopilotProvider.tsx';
 import { GeminiProvider } from '../providers/GeminiProvider';
 import { DeepSeekProvider } from '../providers/DeepSeekProvider';
+import { ClaudeProviderClass } from '../providers/ClaudeProvider';
 import { Message } from '../types';
 
 const providers: { [key: string]: any } = {
@@ -10,6 +11,7 @@ const providers: { [key: string]: any } = {
   copilot: new CopilotProviderClass(),
   gemini: new GeminiProvider('YOUR_API_KEY'),
   deepseek: new DeepSeekProvider('YOUR_API_KEY'),
+  claude: new ClaudeProviderClass(),
 };
 
 export const useChat = (selectedProviders: string[] = []) => {
@@ -18,6 +20,17 @@ export const useChat = (selectedProviders: string[] = []) => {
 
   const sendMessage = async (prompt: string) => {
     setLoading(true);
+    // Add user's message first
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        id: `user-${Date.now()}`,
+        content: prompt,
+        sender: 'user',
+        timestamp: new Date(),
+      },
+    ]);
+
     const responses = await Promise.all(
       selectedProviders.map(async (providerName) => {
         const provider = providers[providerName];

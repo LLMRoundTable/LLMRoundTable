@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import ChatWindow from './components/ChatWindow';
 import Sidebar from './components/Sidebar';
 import ProviderSelector from './components/ProviderSelector';
-import { Provider } from './types';
+import MessageInput from './components/MessageInput';
+import { useChat } from './hooks/useChat';
 
 const App = () => {
   const [selectedProvider, setSelectedProvider] = useState('chatgpt');
+  const { messages, loading, sendMessage } = useChat([selectedProvider]);
 
   return (
     <div className="app-root">
@@ -15,7 +17,8 @@ const App = () => {
           <h1 className="app-title">LLMRoundTable</h1>
           <ProviderSelector selectedProvider={selectedProvider} onProviderChange={setSelectedProvider} />
         </header>
-        <ChatWindow selectedProviders={[selectedProvider]} />
+  <ChatWindow messages={messages} loading={loading} />
+  <MessageInput onSend={sendMessage} />
       </div>
     </div>
   );

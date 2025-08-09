@@ -1,30 +1,20 @@
-import { LLMProvider } from './LLMProvider';
-
-export class GeminiProvider extends LLMProvider {
-  private apiKey: string;
-  private baseUrl: string;
-
-  constructor(apiKey: string) {
-    super();
-    this.apiKey = apiKey;
-    this.baseUrl = 'https://api.gemini.com/v1';
+declare global {
+  interface Window {
+    puter: any;
   }
-
-  async sendPrompt(prompt: string): Promise<string> {
-    const response = await fetch(`${this.baseUrl}/generate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.apiKey}`,
-      },
-      body: JSON.stringify({ prompt }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch response from Gemini API');
+}
+export class GeminiProvider {
+  async sendMessage(prompt: string): Promise<string> {
+    if (!window.puter) {
+      throw new Error('Puter.js script not loaded.');
     }
-
-    const data = await response.json();
-    return data.response;
+    const messages = [{ content: prompt, role: 'user' }];
+    // Use Gemini model via Puter API (if available)
+    const fullResponse = await window.puter.ai.chat(messages, { model: 'openrouter:google/gemini-2.5-pro' });
+    if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
+      return fullResponse.message.content;
+    }
+    if (fullResponse.error) return `Error: ${fullResponse.error}`;
+    return 'Unknown response from Gemini';
   }
 }

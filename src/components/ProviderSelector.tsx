@@ -5,6 +5,7 @@ const providers = [
   { name: 'GitHub Copilot', value: 'copilot', icon: '🧑‍💻' },
   { name: 'Gemini', value: 'gemini', icon: '🔮' },
   { name: 'DeepSeek', value: 'deepseek', icon: '🦙' },
+  { name: 'Claude', value: 'claude', icon: '🦾' },
 ];
 
 interface ProviderSelectorProps {
