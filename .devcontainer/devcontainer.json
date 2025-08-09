@@ -18,9 +18,8 @@
         "naumovs.node-modules-intellisense",
         "yoavbls.pretty-ts-errors",
         "ms-playwright.playwright-test",
-        "google.gemini-code-assist",
-        "WallabyJs.console-ninja"
+        "google.gemini-code-assist"
       ]
     }
   }
-}    
+}

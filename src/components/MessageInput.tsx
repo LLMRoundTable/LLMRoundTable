@@ -31,7 +31,8 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles['message-input']}>
+    <form onSubmit={handleSubmit} className={styles['message-input']} 
+    style = {{maxWidth: '1500px', width: '100%'}}>
       <textarea
         value={inputValue}
         onChange={handleInputChange}
@@ -39,7 +40,6 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend }) => {
         placeholder="Type your message..."
         className={styles['input-field']}
         rows={1}
-        style={{ resize: 'none' }}
       />
       <button type="submit" className={styles['send-button']}>Send</button>
     </form>
