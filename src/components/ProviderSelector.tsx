@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/ProviderSelector.module.css';
 
-const providers = [
+export const providers = [
   { name: 'ChatGPT', value: 'chatgpt', icon: '🤖' },
   { name: 'Llama', value: 'llama', icon: '‍‍🦙' },
   { name: 'Gemini', value: 'gemini', icon: '🔮' },

@@ -3,6 +3,7 @@ export interface Message {
     content: string;
     sender: 'user' | 'llm';
     timestamp: Date;
+    providerIcon?: string;
 }
 
 export interface Provider {
