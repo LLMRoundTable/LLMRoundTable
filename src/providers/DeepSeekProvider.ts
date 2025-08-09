@@ -10,7 +10,7 @@ export class DeepSeekProvider {
     }
     const messages = [{ content: prompt, role: 'user' }];
     // Use DeepSeek model via Puter API (if available)
-    const fullResponse = await window.puter.ai.chat(messages, { model: 'deepseek-chat' });
+    const fullResponse = await window.puter.ai.chat(messages, { model: 'deepseek-reasoner' });
     if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
       return fullResponse.message.content;
     }
