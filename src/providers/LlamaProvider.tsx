@@ -10,7 +10,7 @@ export class LlamaProvider {
     }
     const messages = [{ content: prompt, role: 'user' }];
     // Use DeepSeek model via Puter API (if available)
-    const fullResponse = await window.puter.ai.chat(messages, { model: 'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo' });
+    const fullResponse = await window.puter.ai.chat(messages, { model: 'meta-llama/llama-4-maverick' });
     if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
       return fullResponse.message.content;
     }
