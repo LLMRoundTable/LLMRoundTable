@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChatGPTProviderClass } from '../providers/ChatGPTProvider';
-import { CopilotProviderClass } from '../providers/CopilotProvider.tsx';
+import { LlamaProvider } from '../providers/LlamaProvider.tsx';
 import { GeminiProvider } from '../providers/GeminiProvider';
 import { DeepSeekProvider } from '../providers/DeepSeekProvider';
 import { ClaudeProviderClass } from '../providers/ClaudeProvider';
@@ -8,9 +8,9 @@ import { Message } from '../types';
 
 const providers: { [key: string]: any } = {
   chatgpt: new ChatGPTProviderClass(),
-  copilot: new CopilotProviderClass(),
-  gemini: new GeminiProvider('YOUR_API_KEY'),
-  deepseek: new DeepSeekProvider('YOUR_API_KEY'),
+  llama: new LlamaProvider(),
+  gemini: new GeminiProvider(),
+  deepseek: new DeepSeekProvider(),
   claude: new ClaudeProviderClass(),
 };
 
