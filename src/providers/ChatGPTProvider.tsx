@@ -4,7 +4,7 @@ export class ChatGPTProviderClass {
       throw new Error('Puter.js script not loaded.');
     }
     const messages = [{ content: prompt, role: 'user' }];
-    const fullResponse = await window.puter.ai.chat(messages, { model: 'gpt-4.1-nano' });
+    const fullResponse = await window.puter.ai.chat(messages, true, { model: 'gpt-4.1-nano' });
     if (fullResponse && fullResponse.message && fullResponse.message.content) {
       return fullResponse.message.content;
     }

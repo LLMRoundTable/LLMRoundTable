@@ -10,7 +10,7 @@ export class GeminiProvider {
     }
     const messages = [{ content: prompt, role: 'user' }];
     // Use Gemini model via Puter API (if available)
-    const fullResponse = await window.puter.ai.chat(messages, { model: 'openrouter:google/gemini-2.5-pro' });
+    const fullResponse = await window.puter.ai.chat(messages, true, { model: 'openrouter:google/gemini-2.5-pro' });
     if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
       return fullResponse.message.content;
     }
