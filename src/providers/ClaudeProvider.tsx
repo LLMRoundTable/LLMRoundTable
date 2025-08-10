@@ -1,43 +1,17 @@
-import { config } from '../config';
-const { testEnv } = config;
+import { BaseProvider } from './BaseProvider';
 
-declare global {
-  interface Window {
-    puter: any;
-  }
-}
-export class ClaudeProviderClass {
+export class ClaudeProviderClass extends BaseProvider {
   async sendMessage(prompt: string): Promise<string> {
-    if (!window.puter) {
-      throw new Error('Puter.js script not loaded.');
-    }
-    const messages = [{ content: prompt, role: 'user' }];
-    // Use Claude model via Puter API (if available)
-    const fullResponse = await window.puter.ai.chat(messages, testEnv, { model: 'claude-opus-4-1' });
-    if (fullResponse && fullResponse.message && Array.isArray(fullResponse.message.content)) {
-      // Define type for content block
-      type ContentBlock = { type: string; text?: string };
-      const textBlock = (fullResponse.message.content as ContentBlock[]).find((c: ContentBlock) => c.type === 'text');
-      if (textBlock && textBlock.text) {
-        return textBlock.text;
+    const responseHandler = (message: any) => {
+      if (Array.isArray(message.content)) {
+        type ContentBlock = { type: string; text?: string };
+        const textBlock = (message.content as ContentBlock[]).find((c: ContentBlock) => c.type === 'text');
+        if (textBlock && textBlock.text) {
+          return textBlock.text;
+        }
       }
-    }
-    if (fullResponse.error) return `Error: ${fullResponse.error}`;
-    return 'Unknown response from Claude';
-  }
-
-  async generateImage(prompt: string): Promise<string> {
-    if (!window.puter) {
-      throw new Error('Puter.js script not loaded.');
-    }
-    const messages = [{ content: prompt, role: 'user' }];
-    
-    try {
-        const imageElement = await window.puter.ai.txt2img(messages, testEnv);
-        return imageElement;
-    } catch (error) {
-        throw new Error(`Error generating image: ${error}`);
-    return 'Unknown response from Puter image generation';
-    }
+      return 'Unknown response from Claude';
+    };
+    return this._sendMessage(prompt, 'claude-opus-4-1', responseHandler);
   }
 }
