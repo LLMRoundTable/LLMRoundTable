@@ -8,7 +8,7 @@ import { useChat } from './hooks/useChat';
 
 const App = () => {
   const [selectedProvider, setSelectedProvider] = useState('chatgpt');
-  const { messages, loading, sendMessage } = useChat([selectedProvider]);
+  const { messages, loading, sendMessage, createImage } = useChat([selectedProvider]);
   const currentProviderIcon = providers.find(p => p.value === selectedProvider)?.icon;
 
   return (
@@ -22,7 +22,7 @@ const App = () => {
           <ChatWindow messages={messages} loading={loading} AIcon={currentProviderIcon}  />
         </div>
         <div style={{ maxWidth: '1000px', width: '100%', margin: '0 auto'}}>
-          <MessageInput onSend={sendMessage} />
+          <MessageInput onSend={sendMessage} onCreate={createImage} />
         </div>
       </div>
     </div>
