@@ -23,13 +23,12 @@ export class LlamaProvider {
       throw new Error('Puter.js script not loaded.');
     }
     const messages = [{ content: prompt, role: 'user' }];
-    // Note: 'meta-llama' models are for text. You must use a dedicated image generation model.
-    // Using a placeholder like 'stable-diffusion-xl' as an example.
-    const fullResponse = await window.puter.ai.txt2img(messages, true, { model: 'stable-diffusion-xl' });
-    if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
-      return fullResponse.message.content;
+    try {
+        const imageElement = await window.puter.ai.txt2img(messages, true, { model: 'stable-diffusion-xl' });
+        return imageElement;
+    } catch (error) {
+        throw new Error(`Error generating image: ${error}`);
+    return 'Unknown response from Puter image generation';
     }
-    if (fullResponse.error) return `Error: ${fullResponse.error}`;
-    return 'Unknown response from Llama';
   }
 }

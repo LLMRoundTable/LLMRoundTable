@@ -23,12 +23,13 @@ export class GeminiProvider {
       throw new Error('Puter.js script not loaded.');
     }
     const messages = [{ content: prompt, role: 'user' }];
-    // Use Gemini model via Puter API (if available)
-    const fullResponse = await window.puter.ai.txt2img(messages, true, { model: 'openrouter:google/gemini-2.5-pro' });
-    if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
-      return fullResponse.message.content;
+
+    try {
+        const imageElement = await window.puter.ai.txt2img(messages, true, { model: 'google/imagen-2' });
+        return imageElement;
+    } catch (error) {
+        throw new Error(`Error generating image: ${error}`);
+    return 'Unknown response from Puter image generation';
     }
-    if (fullResponse.error) return `Error: ${fullResponse.error}`;
-    return 'Unknown response from Gemini';
   }
 }
