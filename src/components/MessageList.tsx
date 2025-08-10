@@ -15,7 +15,12 @@ const MessageList: React.FC<MessageListProps> = ({ messages, loading, className,
       {messages.map((message, index) => (
         <div key={index} className={`${styles.message} ${message.sender === 'user' ? styles.user : styles.ai}`}>
           <div className={styles.avatar}>{message.sender === 'user' ? '🧑' : Icon}</div>
-          <div className={styles.bubble}>{message.content}</div>
+          {
+            message.type === 'image' 
+            ? <img src={message.content} alt="" className={styles.bubble} />
+            : <div className={styles.bubble}>{message.content}</div>
+          }
+          
           <span className={styles.timestamp}>{message.timestamp?.toLocaleTimeString?.() || ''}</span>
         </div>
       ))}

@@ -1,17 +1,26 @@
-export interface Message {
+export type Message = {
     id: string;
-    content: string;
-    sender: 'user' | 'llm';
+    sender: 'llm' | 'user';
     timestamp: Date;
-    providerIcon?: string;
+} & ({
+    type: 'text';
+    content: string;
+} | {
+    type: 'image';
+    content: HTMLImageElement; // The actual image element
+});
+
+export interface ChatProvider {
+    name: string;
+    sendMessage: (prompt: string) => Promise<string>;
 }
 
-export interface Provider {
+export interface ImageProvider {
     name: string;
-    sendMessage: (message: string) => Promise<Message>;
+    generateImage: (prompt: string) => Promise<HTMLImageElement>;
 }
 
 export interface ChatState {
     messages: Message[];
-    selectedProviders: Provider[];
+    selectedProviders: (ChatProvider | ImageProvider)[];
 }
