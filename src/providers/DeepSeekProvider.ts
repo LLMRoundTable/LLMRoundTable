@@ -23,8 +23,8 @@ export class DeepSeekProvider {
       throw new Error('Puter.js script not loaded.');
     }
     const messages = [{ content: prompt, role: 'user' }];
-    // Note: 'deepseek-reasoner' is a text model. You must use a dedicated image generation model.
-    const fullResponse = await window.puter.ai.txt2img(messages, true, { model: 'deepseek-image' }); // This is a placeholder, replace with the actual model name.
+    // Use DeepSeek model via Puter API (if available)
+    const fullResponse = await window.puter.ai.txt2img(messages, true, { model: 'deepseek-reasoner' });
     if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
       return fullResponse.message.content;
     }

@@ -4,7 +4,7 @@ export class ChatGPTProviderClass {
       throw new Error('Puter.js script not loaded.');
     }
     const messages = [{ content: prompt, role: 'user' }];
-    const fullResponse = await window.puter.ai.chat(messages, false, { model: 'gpt-4.1-nano' });
+    const fullResponse = await window.puter.ai.chat(messages, false, { model: 'gpt-4-turbo' });
     if (fullResponse && fullResponse.message && fullResponse.message.content) {
       return fullResponse.message.content;
     }
@@ -14,15 +14,16 @@ export class ChatGPTProviderClass {
 
   
   async generateImage(prompt: string): Promise<string> {
-        throw new Error('Puter.js script not loaded.');
+    if (!window.puter) {
       throw new Error('Puter.js script not loaded.');
-
-    try {
-        const imageElement = await window.puter.ai.txt2img(prompt, true);
-        return imageElement;
-    } catch (error) {
-        throw new Error(`Error generating image: ${error}`);
+    }
+    const messages = [{ content: prompt, role: 'user' }];
+    // Use a DALL-E model for image generation
+    const fullResponse = await window.puter.ai.txt2img(messages, true, { model: 'dall-e-3' });
+    if (fullResponse && fullResponse.message && fullResponse.message.content) {
       return fullResponse.message.content;
+    }
+    if (fullResponse.error) return `Error: ${fullResponse.error}`;
     return 'Unknown response from Puter image generation';
   }
 }

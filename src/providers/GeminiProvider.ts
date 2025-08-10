@@ -23,8 +23,8 @@ export class GeminiProvider {
       throw new Error('Puter.js script not loaded.');
     }
     const messages = [{ content: prompt, role: 'user' }];
-    // Note: 'gemini-pro' is a text model. You should use an image generation model like Google's 'imagen-2' if available via your API.
-    const fullResponse = await window.puter.ai.txt2img(messages, true, { model: 'google/imagen-2' });
+    // Use Gemini model via Puter API (if available)
+    const fullResponse = await window.puter.ai.txt2img(messages, true, { model: 'openrouter:google/gemini-2.5-pro' });
     if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
       return fullResponse.message.content;
     }
