@@ -1,3 +1,6 @@
+import { config } from '../config';
+const { testEnv } = config;
+
 declare global {
   interface Window {
     puter: any;
@@ -10,7 +13,7 @@ export class LlamaProvider {
     }
     const messages = [{ content: prompt, role: 'user' }];
     // Use Llama model via Puter API (if available)
-    const fullResponse = await window.puter.ai.chat(messages, true, { model: 'meta-llama/llama-3-70b-instruct' });
+    const fullResponse = await window.puter.ai.chat(messages, testEnv, { model: 'meta-llama/llama-4-maverick' });
     if (fullResponse && fullResponse.message && typeof fullResponse.message.content === 'string') {
       return fullResponse.message.content;
     }
@@ -24,7 +27,7 @@ export class LlamaProvider {
     }
     const messages = [{ content: prompt, role: 'user' }];
     try {
-        const imageElement = await window.puter.ai.txt2img(messages, true, { model: 'stable-diffusion-xl' });
+        const imageElement = await window.puter.ai.txt2img(messages, testEnv);
         return imageElement;
     } catch (error) {
         throw new Error(`Error generating image: ${error}`);

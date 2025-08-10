@@ -1,10 +1,19 @@
+import { config } from '../config';
+const { testEnv } = config;
+
+declare global {
+  interface Window {
+    puter: any;
+  }
+}
 export class ChatGPTProviderClass {
+  testEnv = false;
   async sendMessage(prompt: string): Promise<string> {
     if (!window.puter) {
       throw new Error('Puter.js script not loaded.');
     }
     const messages = [{ content: prompt, role: 'user' }];
-    const fullResponse = await window.puter.ai.chat(messages, false, { model: 'gpt-4.1-nano' });
+    const fullResponse = await window.puter.ai.chat(messages, testEnv, { model: 'gpt-4.1-nano' });
     if (fullResponse && fullResponse.message && fullResponse.message.content) {
       return fullResponse.message.content;
     }
@@ -19,7 +28,7 @@ export class ChatGPTProviderClass {
     }
 
     try {
-        const imageElement = await window.puter.ai.txt2img(prompt, true);
+        const imageElement = await window.puter.ai.txt2img(prompt, testEnv);
         return imageElement;
     } catch (error) {
         throw new Error(`Error generating image: ${error}`);

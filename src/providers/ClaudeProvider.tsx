@@ -1,3 +1,6 @@
+import { config } from '../config';
+const { testEnv } = config;
+
 declare global {
   interface Window {
     puter: any;
@@ -10,7 +13,7 @@ export class ClaudeProviderClass {
     }
     const messages = [{ content: prompt, role: 'user' }];
     // Use Claude model via Puter API (if available)
-    const fullResponse = await window.puter.ai.chat(messages, true, { model: 'claude-opus-4-1' });
+    const fullResponse = await window.puter.ai.chat(messages, testEnv, { model: 'claude-opus-4-1' });
     if (fullResponse && fullResponse.message && Array.isArray(fullResponse.message.content)) {
       // Define type for content block
       type ContentBlock = { type: string; text?: string };
@@ -30,7 +33,7 @@ export class ClaudeProviderClass {
     const messages = [{ content: prompt, role: 'user' }];
     
     try {
-        const imageElement = await window.puter.ai.txt2img(messages, true, { model: 'stable-diffusion-xl' });
+        const imageElement = await window.puter.ai.txt2img(messages, testEnv);
         return imageElement;
     } catch (error) {
         throw new Error(`Error generating image: ${error}`);
