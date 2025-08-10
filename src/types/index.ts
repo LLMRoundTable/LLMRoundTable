@@ -1,3 +1,5 @@
+export type Provider = 'chatgpt' | 'llama' | 'gemini' | 'deepseek' | 'claude' | 'dalle';
+
 export type Message = {
     id: string;
     sender: 'llm' | 'user';
