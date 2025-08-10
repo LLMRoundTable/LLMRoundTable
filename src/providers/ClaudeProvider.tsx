@@ -10,7 +10,7 @@ export class ClaudeProviderClass {
     }
     const messages = [{ content: prompt, role: 'user' }];
     // Use Claude model via Puter API (if available)
-    const fullResponse = await window.puter.ai.chat(messages, { model: 'claude-opus-4-1' });
+    const fullResponse = await window.puter.ai.chat(messages, true, { model: 'claude-opus-4-1' });
     if (fullResponse && fullResponse.message && Array.isArray(fullResponse.message.content)) {
       // Define type for content block
       type ContentBlock = { type: string; text?: string };
