@@ -54,8 +54,7 @@ export const useChat = (selectedProviders: ProviderName[] = []) => {
         if (type === 'image') {
           return {
             id: `${providerName}-${Date.now()}`,
-            // First assert to 'unknown', then to 'HTMLImageElement'
-            content: response as unknown as HTMLImageElement,
+            content: response as string,
             sender: 'llm',
             timestamp: new Date(),
             type: 'image',

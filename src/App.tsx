@@ -4,10 +4,11 @@ import Sidebar from './components/Sidebar';
 import ProviderSelector, { providers } from './components/ProviderSelector';
 import MessageInput from './components/MessageInput';
 import { useChat } from './hooks/useChat';
+import { Provider } from './types';
 
 
 const App = () => {
-  const [selectedProvider, setSelectedProvider] = useState('chatgpt');
+  const [selectedProvider, setSelectedProvider] = useState<Provider>('chatgpt');
   const { messages, loading, sendMessage, createImage } = useChat([selectedProvider]);
   const currentProviderIcon = providers.find(p => p.value === selectedProvider)?.icon;
 

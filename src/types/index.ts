@@ -9,7 +9,7 @@ export type Message = {
     content: string;
 } | {
     type: 'image';
-    content: HTMLImageElement; // The actual image element
+    content: string; // The base 64 string of the image
 });
 
 export interface ChatProvider {

@@ -1,3 +1,5 @@
+/// <reference path="../declarations.d.ts" />
+
 import { config } from '../config';
 const { testEnv } = config;
 
@@ -8,7 +10,7 @@ export abstract class BaseProvider {
   protected txt2imgInputType: 'prompt' | 'messages' = 'messages';
 
   constructor() {
-    if (!window.puter) {
+    if (!(window as any).puter) {
       throw new Error('Puter.js script not loaded.');
     }
   }
@@ -22,7 +24,7 @@ export abstract class BaseProvider {
     }
 
     try {
-      const imageElement = await window.puter.ai.txt2img(input, this.testEnv);
+      const imageElement = await (window as any).puter.ai.txt2img(input, this.testEnv);
       return imageElement;
     } catch (error) {
       throw new Error(`Error generating image: ${error}`);
@@ -31,7 +33,7 @@ export abstract class BaseProvider {
 
   protected async _sendMessage(prompt: string, model: string, responseHandler?: (response: any) => string): Promise<string> {
     const messages = [{ content: prompt, role: 'user' }];
-    const fullResponse = await window.puter.ai.chat(messages, this.testEnv, { model });
+    const fullResponse = await (window as any).puter.ai.chat(messages, this.testEnv, { model });
 
     if (fullResponse && fullResponse.message) {
       if (responseHandler) {
