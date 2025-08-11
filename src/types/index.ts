@@ -1,3 +1,5 @@
+export type Provider = 'chatgpt' | 'llama' | 'gemini' | 'deepseek' | 'claude' | 'dalle';
+
 export type Message = {
     id: string;
     sender: 'llm' | 'user';
@@ -7,7 +9,7 @@ export type Message = {
     content: string;
 } | {
     type: 'image';
-    content: HTMLImageElement; // The actual image element
+    content: string; // The base 64 string of the image
 });
 
 export interface ChatProvider {

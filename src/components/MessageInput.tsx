@@ -23,7 +23,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onCreate }) => {
     }
   };
 
-  const sendChat = (event: React.FormEvent<HTMLFormElement>) => {
+  const sendChat = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (inputValue.trim()) {
       onSend(inputValue);
@@ -31,7 +31,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onCreate }) => {
     }
   };
 
-  const generateImage = (event: React.FormEvent<HTMLFormElement>) => {
+  const generateImage = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (inputValue.trim()) {
       onCreate(inputValue);
@@ -52,8 +52,8 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onCreate }) => {
         className={styles['input-field']}
         rows={1}
       />
-      <button onClick={sendChat} type="submit" className={styles['send-button']}>Send</button>
-      <button onClick={generateImage} type="submit" className={styles['send-button']}>Create Image</button>
+      <button onClick={sendChat} type="button" className={styles['send-button']}>Send</button>
+      <button onClick={generateImage} type="button" className={styles['send-button']}>Create Image</button>
     </form>
   );
 };
