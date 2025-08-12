@@ -19,10 +19,10 @@ const App = () => {
         <header style={{position: 'fixed', left: '50px', bottom: '20px', zIndex: 1}}>
           <ProviderSelector selectedProvider={selectedProvider} onProviderChange={setSelectedProvider} />
         </header>
-        <div style={{ maxWidth: '1200px', width: '100%', margin: '0 auto'}}>
+        <div style={{ maxWidth: '1400px', width: '100%', margin: '0 auto'}}>
           <ChatWindow messages={messages} loading={loading} AIcon={currentProviderIcon}  />
         </div>
-        <div style={{ maxWidth: '1000px', width: '100%', margin: '0 auto'}}>
+        <div style={{ maxWidth: '1400px', width: '100%', margin: '0 auto'}}>
           <MessageInput onSend={(prompt) => sendMessage(prompt, [selectedProvider])} onCreate={(prompt) => createImage(prompt, ['dalle'])} />
         </div>
       </div>
