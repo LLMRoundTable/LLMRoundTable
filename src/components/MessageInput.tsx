@@ -3,9 +3,10 @@ import styles from '../styles/MessageInput.module.css';
 
 interface MessageInputProps {
   onSend: (message: string) => void;
+  onCreate: (message: string) => void;
 }
 
-const MessageInput: React.FC<MessageInputProps> = ({ onSend }) => {
+const MessageInput: React.FC<MessageInputProps> = ({ onSend, onCreate }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,7 +23,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend }) => {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const sendChat = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (inputValue.trim()) {
       onSend(inputValue);
@@ -30,8 +31,18 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend }) => {
     }
   };
 
+  const generateImage = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (inputValue.trim()) {
+      onCreate(inputValue);
+      setInputValue('');
+    }
+  };
+
+  
+
   return (
-    <form onSubmit={handleSubmit} className={styles['message-input']} 
+    <form className={styles['message-input']} 
     style = {{maxWidth: '1500px', width: '100%'}}>
       <textarea
         value={inputValue}
@@ -41,7 +52,8 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend }) => {
         className={styles['input-field']}
         rows={1}
       />
-      <button type="submit" className={styles['send-button']}>Send</button>
+      <button onClick={sendChat} type="button" className={styles['send-button']}>Send</button>
+      <button onClick={generateImage} type="button" className={styles['send-button']}>Create Image</button>
     </form>
   );
 };

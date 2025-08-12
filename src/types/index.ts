@@ -1,17 +1,29 @@
-export interface Message {
+export type Provider = 'chatgpt' | 'llama' | 'gemini' | 'deepseek' | 'claude' | 'dalle';
+
+export type Message = {
     id: string;
-    content: string;
-    sender: 'user' | 'llm';
+    sender: 'llm' | 'user';
     timestamp: Date;
-    providerIcon?: string;
+    icon?: string;
+} & ({
+    type: 'text';
+    content: string;
+} | {
+    type: 'image';
+    content: string; // The base 64 string of the image
+});
+
+export interface ChatProvider {
+    name: string;
+    sendMessage: (prompt: string) => Promise<string>;
 }
 
-export interface Provider {
+export interface ImageProvider {
     name: string;
-    sendMessage: (message: string) => Promise<Message>;
+    generateImage: (prompt: string) => Promise<HTMLImageElement>;
 }
 
 export interface ChatState {
     messages: Message[];
-    selectedProviders: Provider[];
+    selectedProviders: (ChatProvider | ImageProvider)[];
 }

@@ -7,11 +7,14 @@ export const providers = [
   { name: 'Gemini', value: 'gemini', icon: '🔮' },
   { name: 'DeepSeek', value: 'deepseek', icon: '🐋' },
   { name: 'Claude', value: 'claude', icon: '🦾' },
+  { name: 'DALL-E', value: 'dalle', icon: '🎨' },
 ];
 
+import { Provider } from '../types';
+
 interface ProviderSelectorProps {
-  selectedProvider: string;
-  onProviderChange: (provider: string) => void;
+  selectedProvider: Provider;
+  onProviderChange: (provider: Provider) => void;
 }
 
 const ProviderSelector: React.FC<ProviderSelectorProps> = ({ selectedProvider, onProviderChange }) => {
@@ -19,7 +22,7 @@ const ProviderSelector: React.FC<ProviderSelectorProps> = ({ selectedProvider, o
     <div className={styles['provider-selector']}>
       <select
         value={selectedProvider}
-        onChange={(e) => onProviderChange(e.target.value)}
+        onChange={(e) => onProviderChange(e.target.value as Provider)}
       >
         {providers.map((provider) => (
           <option key={provider.value} value={provider.value}>
