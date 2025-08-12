@@ -9,7 +9,7 @@ import { Provider } from './types';
 
 const App = () => {
   const [selectedProvider, setSelectedProvider] = useState<Provider>('chatgpt');
-  const { messages, loading, sendMessage, createImage } = useChat([selectedProvider]);
+  const { messages, loading, sendMessage, createImage } = useChat();
   const currentProviderIcon = providers.find(p => p.value === selectedProvider)?.icon;
 
   return (
@@ -23,7 +23,7 @@ const App = () => {
           <ChatWindow messages={messages} loading={loading} AIcon={currentProviderIcon}  />
         </div>
         <div style={{ maxWidth: '1000px', width: '100%', margin: '0 auto'}}>
-          <MessageInput onSend={sendMessage} onCreate={createImage} />
+          <MessageInput onSend={(prompt) => sendMessage(prompt, [selectedProvider])} onCreate={(prompt) => createImage(prompt, ['dalle'])} />
         </div>
       </div>
     </div>

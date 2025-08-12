@@ -4,6 +4,7 @@ export type Message = {
     id: string;
     sender: 'llm' | 'user';
     timestamp: Date;
+    icon?: string;
 } & ({
     type: 'text';
     content: string;
