@@ -1,0 +1,12 @@
+.themeToggleButton {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .themeToggleButton {
+  border-color: #555;
+}

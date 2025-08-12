@@ -1,9 +1,117 @@
 .sidebar {
   width: 260px;
-  background: #fff;
-  border-right: 1px solid #e5e7eb;
+  background-color: var(--background-color);
+  border-right: 1px solid var(--border-color, #e5e7eb);
   padding: 24px 16px;
   box-shadow: 2px 0 8px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
+}
+
+[data-theme='dark'] .sidebar {
+  border-right: 1px solid #333;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+}
+
+.sidebar h1 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 8px 0;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  color: #007bff;
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  font-size: 1.2rem;
+}
+
+.sidebar li .avatar {
+  background-color: var(--background-color-light);
+}
+
+[data-theme='dark'] .sidebar li .avatar {
+  background-color: #555;
+}
+
+.sidebar li:hover .avatar {
+  background-color: #007bff;
+  color: white;
+}
+
+.sidebar li span {
+  font-size: 1rem;
+}
+
+.sidebar li:hover span {
+  color: #007bff;
+}
+
+.sidebar .new-chat-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.sidebar .new-chat-button:hover {
+  background-color: #0056b3;
+}
+
+.sidebar .settings-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-top: auto;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.sidebar .settings-link:hover {
+  text-decoration: underline;
+}
+
+.sidebar .provider-list {
+  margin-top: 20px;
+}
+
+.sidebar .provider-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar .provider-list li .icon {
+  font-size: 1.5rem;
+}
+
+.sidebar .provider-list li .name {
+  font-size: 1rem;
 }
