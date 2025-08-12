@@ -49,6 +49,7 @@ body {
 [data-theme='dark'] {
   --background-color: var(--background-color-dark);
   --text-color: var(--text-color-dark);
+  color: #FFFFFF !important;
 
   --background-color-input-field: var(--background-color-input-field-dark);
   --background-color-bubble: var(--background-color-bubble-dark);

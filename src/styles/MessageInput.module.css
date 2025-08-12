@@ -28,6 +28,7 @@
 
 [data-theme='dark'] .input-field {
   background-color: #3a3a3a;
+  color: white;
 }
 
 .send-button {
