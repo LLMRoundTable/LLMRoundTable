@@ -5,6 +5,7 @@ import { GeminiProvider } from '../providers/GeminiProvider';
 import { DeepSeekProvider } from '../providers/DeepSeekProvider';
 import { ClaudeProviderClass } from '../providers/ClaudeProvider';
 import { Message } from '../types';
+import { providers as providerDetails } from '../components/ProviderSelector';
 
 const providers = {
   chatgpt: new ChatGPTProviderClass(),
@@ -17,11 +18,11 @@ const providers = {
 
 type ProviderName = keyof typeof providers;
 
-export const useChat = (selectedProviders: ProviderName[] = []) => {
+export const useChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSend = async (prompt: string, type: 'chat' | 'image' = 'chat') => {
+  const handleSend = async (prompt: string, selectedProviders: ProviderName[], type: 'chat' | 'image' = 'chat') => {
     setLoading(true);
 
     setMessages((prevMessages) => [
@@ -51,6 +52,7 @@ export const useChat = (selectedProviders: ProviderName[] = []) => {
 
       const newMessages: Message[] = responses.map((response, index) => {
         const providerName = selectedProviders[index];
+        const providerInfo = providerDetails.find(p => p.value === providerName);
         if (type === 'image') {
           return {
             id: `${providerName}-${Date.now()}`,
@@ -58,6 +60,7 @@ export const useChat = (selectedProviders: ProviderName[] = []) => {
             sender: 'llm',
             timestamp: new Date(),
             type: 'image',
+            icon: providerInfo?.icon,
           };
         } else {
           return {
@@ -66,6 +69,7 @@ export const useChat = (selectedProviders: ProviderName[] = []) => {
             sender: 'llm',
             timestamp: new Date(),
             type: 'text',
+            icon: providerInfo?.icon,
           };
         }
       });
@@ -81,6 +85,7 @@ export const useChat = (selectedProviders: ProviderName[] = []) => {
           sender: 'llm',
           timestamp: new Date(),
           type: 'text',
+          icon: '🎨',
         },
       ]);
     } finally {
@@ -88,8 +93,8 @@ export const useChat = (selectedProviders: ProviderName[] = []) => {
     }
   };
 
-  const sendMessage = (prompt: string) => handleSend(prompt, 'chat');
-  const createImage = (prompt: string) => handleSend(prompt, 'image');
+  const sendMessage = (prompt: string, selectedProviders: ProviderName[]) => handleSend(prompt, selectedProviders, 'chat');
+  const createImage = (prompt: string, selectedProviders: ProviderName[]) => handleSend(prompt, selectedProviders, 'image');
 
   return {
     messages,

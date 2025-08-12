@@ -7,6 +7,7 @@ export const providers = [
   { name: 'Gemini', value: 'gemini', icon: '🔮' },
   { name: 'DeepSeek', value: 'deepseek', icon: '🐋' },
   { name: 'Claude', value: 'claude', icon: '🦾' },
+  { name: 'DALL-E', value: 'dalle', icon: '🎨' },
 ];
 
 import { Provider } from '../types';
