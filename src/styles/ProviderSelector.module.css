@@ -3,8 +3,9 @@
 }
 .provider-selector select {
   padding: 10px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--text-color);
   border-radius: 8px;
   font-size: 1rem;
-  background: #f7f7fa;
+  background: var(--background-color-input-field);
+  color: var(--text-color);
 }

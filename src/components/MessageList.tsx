@@ -13,6 +13,12 @@ const MessageList: React.FC<MessageListProps> = ({ messages, loading, className,
   console.log('Icon prop:', Icon);
   return (
     <div className={className || styles['message-list']}>
+      {messages.length === 0 && !loading && (
+        <div className={`${styles.message} ${styles.ai}`}>
+          <div className={styles.avatar}>{Icon}</div>
+          <div className={styles.bubble}>Welcome to LLMRoundTable!</div>
+        </div>
+      )}
       {messages.map((message, index) => {
         console.log(message);
         return (

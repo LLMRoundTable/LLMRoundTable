@@ -1,8 +1,79 @@
+:root {
+  --background-color-light: #f0f0f0;
+  --text-color-light: #333;
+  --background-color-dark: #333;
+  --text-color-dark: #f0f0f0;
+
+  --background-color-input-field-light: #f7f7fa;
+  --background-color-input-field-dark: #3a3a3a;
+
+  --background-color-bubble-light: #f7f7fa;
+  --text-color-bubble-light: #222;
+
+  --background-color-bubble-user-light: #d1e7ff;
+  --text-color-bubble-user-light: #1a3a6b;
+
+  --background-color-bubble-ai-light: #fff;
+  --text-color-bubble-ai-light: #222;
+
+  --background-color-avatar-light: #e5e7eb;
+  --text-color-avatar-light: #555;
+
+  --text-color-timestamp-light: #aaa;
+}
+
 body {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #ece9f6 0%, #f7f7fa 100%);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+[data-theme='light'] {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+
+  --background-color-input-field: var(--background-color-input-field-light);
+  --background-color-bubble: var(--background-color-bubble-light);
+  --text-color-bubble: var(--text-color-bubble-light);
+  --background-color-bubble-user: var(--background-color-bubble-user-light);
+  --text-color-bubble-user: var(--text-color-bubble-user-light);
+  --background-color-bubble-ai: var(--background-color-bubble-ai-light);
+  --text-color-bubble-ai: var(--text-color-bubble-ai-light);
+  --background-color-avatar: var(--background-color-avatar-light);
+  --text-color-avatar: var(--text-color-avatar-light);
+  --text-color-timestamp: var(--text-color-timestamp-light);
+}
+
+[data-theme='dark'] {
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+  color: #FFFFFF !important;
+
+  --background-color-input-field: var(--background-color-input-field-dark);
+  --background-color-bubble: var(--background-color-bubble-dark);
+  --text-color-bubble: var(--text-color-bubble-dark);
+  --background-color-bubble-user: var(--background-color-bubble-user-dark);
+  --text-color-bubble-user: var(--text-color-bubble-user-dark);
+  --background-color-bubble-ai: var(--background-color-bubble-ai-dark);
+  --text-color-bubble-ai: var(--text-color-bubble-ai-dark);
+  --background-color-avatar: var(--background-color-avatar-dark);
+  --text-color-avatar: var(--text-color-avatar-dark);
+  --text-color-timestamp: var(--text-color-timestamp-dark);
+}
+
+/* Dark theme overrides for new variables */
+[data-theme='dark'] {
+  --background-color-bubble-dark: #2d2d2d;
+  --text-color-bubble-dark: #f0f0f0;
+  --background-color-bubble-user-dark: #0056b3;
+  --text-color-bubble-user-dark: #e0e0e0;
+  --background-color-bubble-ai-dark: #2d2d2d;
+  --text-color-bubble-ai-dark: #f0f0f0;
+  --background-color-avatar-dark: #3a3a3a;
+  --text-color-avatar-dark: #f0f0f0;
+  --text-color-timestamp-dark: #777;
 }
 
 .app-root {
@@ -49,4 +120,110 @@ body {
   .chat-header {
     padding: 12px 0 8px 0;
   }
+}
+
+@media (max-width: 600px) {
+  .app-title {
+    font-size: 1.5rem;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+
+/* Additional styles for a more polished look */
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.input-field {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+/* Dark theme overrides */
+[data-theme='dark'] .card {
+  background-color: #2d2d2d;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+[data-theme='dark'] .input-field {
+  background-color: #3a3a3a;
+  border-color: #555;
+  color: #f0f0f0;
+}
+
+[data-theme='dark'] .button {
+  background-color: #0056b3;
+}
+
+[data-theme='dark'] .button:hover {
+  background-color: #003d80;
+}
+
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+
+/* General layout adjustments */
+.main-area {
+  padding-bottom: 100px; /* Ensure content is not hidden behind the fixed message input */
+}
+
+.message-input-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 700px;
+  z-index: 1000;
 }

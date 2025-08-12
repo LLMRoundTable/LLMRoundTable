@@ -1,7 +1,7 @@
 .chat-window {
   max-width: 700px;
   min-height: 500px;
-  background: #fff;
+  background-color: var(--background-color);
   border-radius: 16px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.08);
   display: flex;
@@ -9,6 +9,10 @@
   padding: 24px;
   margin-bottom: 32px;
   height: 70vh;
+}
+
+[data-theme='dark'] .chat-window {
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
 }
 
 .message-list {
